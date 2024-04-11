@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
 import 'package:kitchenwise/widgets/text_form_field.dart';
