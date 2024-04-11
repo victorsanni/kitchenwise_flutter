@@ -11,44 +11,46 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Container(
-            margin: const EdgeInsets.symmetric(
-                horizontal: AppConstants.sidePadding,
-                vertical: AppConstants.topPadding),
-            child: Column(
-              children: [
-                Text(
-                  'Welcome Victor!', // TODO: Replace with username in login
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                Expanded(
-                    child: ListView(
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'About',
-                        style: Theme.of(context).textTheme.bodyLarge,
+    return Scaffold(
+      body: SafeArea(
+          child: Container(
+              margin: const EdgeInsets.symmetric(
+                  horizontal: AppConstants.sidePadding,
+                  vertical: AppConstants.topPadding),
+              child: Column(
+                children: [
+                  Text(
+                    'Welcome Victor!', // TODO: Replace with username in login
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  Expanded(
+                      child: ListView(
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'About',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Settings',
-                        style: Theme.of(context).textTheme.bodyLarge,
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Settings',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Log out',
-                        style: Theme.of(context).textTheme.bodyLarge,
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Log out',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
                       ),
-                    ),
-                  ],
-                ))
-              ],
-            )));
+                    ],
+                  ))
+                ],
+              ))),
+    );
   }
 }

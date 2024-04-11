@@ -36,9 +36,7 @@ final router = GoRouter(
               path: inventoryPath,
               pageBuilder: (context, state) {
                 return const NoTransitionPage(
-                  child: Scaffold(
-                    body: InventoryPage(),
-                  ),
+                  child: InventoryPage(),
                 );
               },
               routes: [],
@@ -52,9 +50,7 @@ final router = GoRouter(
               path: homePath,
               pageBuilder: (context, state) {
                 return const NoTransitionPage(
-                  child: Scaffold(
-                    body: HomePage(),
-                  ),
+                  child: HomePage(),
                 );
               },
               routes: [],
@@ -68,9 +64,7 @@ final router = GoRouter(
               path: profilePath,
               pageBuilder: (context, state) {
                 return const NoTransitionPage(
-                  child: Scaffold(
-                    body: ProfilePage(),
-                  ),
+                  child: ProfilePage(),
                 );
               },
               routes: [],
