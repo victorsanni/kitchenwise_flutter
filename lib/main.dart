@@ -36,10 +36,11 @@ class Kitchenwise extends StatelessWidget {
               fontSize: 15.0),
         ),
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.black45,
+          seedColor: Colors.white60,
           primary: Colors.black45,
           inversePrimary: Colors.black,
           secondary: const Color.fromARGB(255, 180, 124, 28),
+          tertiary: Colors.white60,
         ),
         useMaterial3: true,
       ),

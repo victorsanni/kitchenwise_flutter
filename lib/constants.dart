@@ -13,4 +13,8 @@ class AppConstants {
   static const appIconSize = 30.0;
   static const imageRadius = 15.0;
   static const imageSize = 50.0;
+  static const modalHeightPortrait = 250.0;
+  static const modalHeightLandscape = 330.0;
+  static const modalVerticalPadding = 10.0;
+  static const modalHorizPadding = 15.0;
 }

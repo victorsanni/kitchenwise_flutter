@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
+import 'package:kitchenwise/widgets/inventory_modal.dart';
 
 class InventoryCard extends StatelessWidget {
   const InventoryCard({
@@ -20,6 +21,7 @@ class InventoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
+        tileColor: Theme.of(context).colorScheme.tertiary,
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(AppConstants.imageRadius),
           child: Container(
@@ -31,9 +33,26 @@ class InventoryCard extends StatelessWidget {
         ),
         title: Text(title),
         subtitle: Text(subtitle),
-        trailing: const Icon(
-          Icons.edit,
-          size: AppConstants.appIconSize,
+        trailing: IconButton(
+          onPressed: () {
+            showModalBottomSheet(
+              // TODO: Populate modal with pre-existing item values
+              context: context,
+              builder: (context) => const InventoryAddItemModal(
+                title: 'Edit Item',
+                isEditItem: true,
+              ),
+              constraints: BoxConstraints(
+                  maxHeight:
+                      MediaQuery.of(context).orientation == Orientation.portrait
+                          ? AppConstants.modalHeightPortrait
+                          : AppConstants.modalHeightLandscape),
+            );
+          },
+          icon: const Icon(
+            Icons.edit,
+            size: AppConstants.appIconSize,
+          ),
         ),
       ),
     );

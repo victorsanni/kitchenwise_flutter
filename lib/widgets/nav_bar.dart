@@ -21,6 +21,7 @@ class KitchenwiseNavBar extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: NavigationBar(
+        backgroundColor: Colors.white,
         onDestinationSelected: (int index) {
           _goOtherTab(index);
         },
