@@ -100,6 +100,9 @@ class _LoginPageState extends State<LoginPage> {
                     isPassword: true,
                     controller: passwordController,
                   ),
+                  const SizedBox(
+                    height: AppConstants.bottomPadding,
+                  ),
                   widget.isCreateAccount
                       ? CustomTextFormField(
                           hintText: 'Confirm Password',

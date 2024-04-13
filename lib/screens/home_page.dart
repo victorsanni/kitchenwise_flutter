@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
+import 'package:kitchenwise/data/recipe_data.dart';
+import 'package:kitchenwise/widgets/recipe_card.dart';
 import 'package:kitchenwise/widgets/text_form_field.dart';
 
 enum RecipeHeader { suggestedRecipes, myRecipes }
@@ -116,16 +118,15 @@ class _HomePageState extends State<HomePage> {
                         crossAxisCount: 2,
                         mainAxisSpacing: AppConstants.sidePadding,
                         crossAxisSpacing: AppConstants.sidePadding,
-                        children: const [
-                          Placeholder(),
-                          Placeholder(),
-                          Placeholder(),
-                          Placeholder(),
-                          Placeholder(),
-                          Placeholder(),
-                          Placeholder(),
-                          Placeholder()
-                        ],
+                        children: recipeData
+                            .map((item) => RecipeCard(
+                                  title: item.title,
+                                  image: Image.network(
+                                    item.imageUrl,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ))
+                            .toList(),
                       ),
                     )),
                   ],

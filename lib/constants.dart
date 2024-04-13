@@ -17,4 +17,6 @@ class AppConstants {
   static const modalHeightLandscape = 330.0;
   static const modalVerticalPadding = 10.0;
   static const modalHorizPadding = 15.0;
+  static const imageTextPadding = 10.0;
+  static const recipeTextSize = 15.0;
 }
