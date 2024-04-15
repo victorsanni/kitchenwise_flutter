@@ -1,42 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class RecipeCard extends StatelessWidget {
   const RecipeCard({
     super.key,
     required this.title,
-    this.image = const Image(
-      image: AssetImage(
-          'images/kitchenwise_icon.png'), // TODO: Replace with image loading animations
-    ),
+    this.imageUrl = '',
   });
 
   final String title;
-  final Image image;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Stack(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppConstants.imageRadius),
-          ),
-          child: image,
+        Center(
+            child: CircularProgressIndicator(
+          color: Theme.of(context).colorScheme.secondary,
+        )),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: imageUrl,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              height: AppConstants.imageTextPadding,
+            ),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  fontSize: AppConstants.recipeTextSize,
+                  overflow: TextOverflow.ellipsis),
+            )
+          ],
         ),
-        const SizedBox(
-          height: AppConstants.imageTextPadding,
-        ),
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          style: Theme.of(context)
-              .textTheme
-              .labelLarge
-              ?.copyWith(fontSize: AppConstants.recipeTextSize, overflow: TextOverflow.ellipsis),
-        )
       ],
     );
   }

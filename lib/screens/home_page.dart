@@ -121,10 +121,7 @@ class _HomePageState extends State<HomePage> {
                         children: recipeData
                             .map((item) => RecipeCard(
                                   title: item.title,
-                                  image: Image.network(
-                                    item.imageUrl,
-                                    fit: BoxFit.cover,
-                                  ),
+                                  imageUrl: item.imageUrl
                                 ))
                             .toList(),
                       ),
