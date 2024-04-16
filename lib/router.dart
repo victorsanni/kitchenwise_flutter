@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kitchenwise/screens/auth/create_account_page.dart';
 import 'package:kitchenwise/screens/auth/forgot_password.dart';
+import 'package:kitchenwise/screens/auth/validation_code_page.dart';
 import 'package:kitchenwise/screens/home_page.dart';
 import 'package:kitchenwise/screens/inventory_page.dart';
 import 'package:kitchenwise/screens/auth/landing_page.dart';
@@ -13,7 +15,7 @@ final _shellNavigatorHomeKey = GlobalKey<NavigatorState>();
 final _shellNavigatorInventoryKey = GlobalKey<NavigatorState>();
 final _shellNavigatorProfileKey = GlobalKey<NavigatorState>();
 
-bool shouldLogin = false;
+bool shouldLogin = true;
 
 final homePath = shouldLogin ? '/home' : '/';
 final landingPath = shouldLogin ? '/' : '/landing';
@@ -79,26 +81,22 @@ final router = GoRouter(
       routes: [
         GoRoute(
           path: 'login',
-          builder: (context, state) => const LoginPage(isCreateAccount: false),
+          builder: (context, state) => const LoginPage(),
           routes: [
             GoRoute(
                 path: 'forgot_password',
-                builder: (context, state) => const ForgotPasswordPage(),
+                builder: (context, state) => const ValidationCodePage(),
                 routes: [
                   GoRoute(
                     path: 'validation_page',
-                    builder: (context, state) => const ForgotPasswordPage(
-                      isValidationCodePage: true,
-                    ),
+                    builder: (context, state) => const ForgotPasswordPage(),
                   ),
                 ]),
           ],
         ),
         GoRoute(
           path: 'create_account',
-          builder: (context, state) => const LoginPage(
-            isCreateAccount: true,
-          ),
+          builder: (context, state) => const CreateAccountPage(),
         ),
       ],
     ),

@@ -6,32 +6,44 @@ import 'package:kitchenwise/constants.dart';
 import 'package:kitchenwise/widgets/login_button.dart';
 import 'package:kitchenwise/widgets/text_form_field.dart';
 
-class ForgotPasswordPage extends StatefulWidget {
-  const ForgotPasswordPage({super.key});
+class CreateAccountPage extends StatefulWidget {
+  const CreateAccountPage({super.key});
 
   @override
-  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
+  State<CreateAccountPage> createState() => _CreateAccountPageState();
 }
 
-class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+class _CreateAccountPageState extends State<CreateAccountPage> {
   final emailAddressController = TextEditingController();
-  final validationCodeController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
+  final confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
     emailAddressController.dispose();
-    validationCodeController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
   }
 
   void handleLoginButtonPressed() {
-    if (emailAddressController.text.isEmpty &&
-        validationCodeController.text.isEmpty) {
+    if (passwordController.text.isEmpty ||
+        emailAddressController.text.isEmpty) {
       showDialog(
         context: context,
         builder: (context) {
           return const CupertinoAlertDialog(
               title: Text("Fill out all fields!"));
+        },
+      );
+    } else if (confirmPasswordController.text != passwordController.text) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return const CupertinoAlertDialog(
+              title: Text("Passwords do not match!"));
         },
       );
     } else if (!EmailValidator.validate(emailAddressController.text)) {
@@ -43,7 +55,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         },
       );
     } else {
-      context.go('/login/forgot_password/validation_page');
+      context.go('/home');
     }
   }
 
@@ -76,14 +88,31 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     hintText: 'Email address',
                     controller: emailAddressController,
                   ),
+                  const SizedBox(
+                    height: AppConstants.bottomPadding,
+                  ),
+                  CustomTextFormField(
+                    hintText: 'Password',
+                    isPassword: true,
+                    controller: passwordController,
+                  ),
+                  const SizedBox(
+                    height: AppConstants.bottomPadding,
+                  ),
+                  CustomTextFormField(
+                    hintText: 'Confirm Password',
+                    isPassword: true,
+                    controller: confirmPasswordController,
+                  )
                 ],
               ),
             ),
             Column(
               children: [
+                // TODO: Change to navigate to home page, while saving user info
+                // TODO: use user data to validate login
                 LoginButton(
-                    onPressed: handleLoginButtonPressed,
-                    centerText: 'Continue'),
+                    onPressed: handleLoginButtonPressed, centerText: 'Login'),
                 LoginButton(
                   onPressed: () => context.go('/'),
                   centerText: 'Cancel',

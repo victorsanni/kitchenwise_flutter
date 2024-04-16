@@ -1,4 +1,3 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -7,8 +6,7 @@ import 'package:kitchenwise/widgets/login_button.dart';
 import 'package:kitchenwise/widgets/text_form_field.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, this.isCreateAccount = false});
-  final bool isCreateAccount;
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -19,43 +17,21 @@ class _LoginPageState extends State<LoginPage> {
 
   final passwordController = TextEditingController();
 
-  final confirmPasswordController = TextEditingController();
-
   @override
   void dispose() {
     super.dispose();
     emailAddressController.dispose();
     passwordController.dispose();
-    confirmPasswordController.dispose();
   }
 
   void handleLoginButtonPressed() {
     if (passwordController.text.isEmpty ||
-        emailAddressController.text.isEmpty ||
-        (widget.isCreateAccount && confirmPasswordController.text.isEmpty)) {
+        emailAddressController.text.isEmpty) {
       showDialog(
         context: context,
         builder: (context) {
           return const CupertinoAlertDialog(
               title: Text("Fill out all fields!"));
-        },
-      );
-    } else if (widget.isCreateAccount &&
-        confirmPasswordController.text != passwordController.text) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const CupertinoAlertDialog(
-              title: Text("Passwords do not match!"));
-        },
-      );
-    } else if (widget.isCreateAccount &&
-        !EmailValidator.validate(emailAddressController.text)) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const CupertinoAlertDialog(
-              title: Text("Email is not correct!"));
         },
       );
     } else {
@@ -103,26 +79,17 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: AppConstants.bottomPadding,
                   ),
-                  widget.isCreateAccount
-                      ? CustomTextFormField(
-                          hintText: 'Confirm Password',
-                          isPassword: true,
-                          controller: confirmPasswordController,
-                        )
-                      : TextButton(
-                          onPressed: () {
-                            context.go('/login/forgot_password');
-                          },
-                          child: Text(
-                            'Forgot Password? Click here to reset',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium
-                                ?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                    decoration: TextDecoration.underline),
-                          ),
-                        ),
+                  TextButton(
+                    onPressed: () {
+                      context.go('/login/forgot_password');
+                    },
+                    child: Text(
+                      'Forgot Password? Click here to reset',
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
                 ],
               ),
             ),

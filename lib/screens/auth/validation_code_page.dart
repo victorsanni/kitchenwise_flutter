@@ -1,4 +1,3 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -6,14 +5,14 @@ import 'package:kitchenwise/constants.dart';
 import 'package:kitchenwise/widgets/login_button.dart';
 import 'package:kitchenwise/widgets/text_form_field.dart';
 
-class ForgotPasswordPage extends StatefulWidget {
-  const ForgotPasswordPage({super.key});
+class ValidationCodePage extends StatefulWidget {
+  const ValidationCodePage({super.key});
 
   @override
-  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
+  State<ValidationCodePage> createState() => _ValidationCodePageState();
 }
 
-class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+class _ValidationCodePageState extends State<ValidationCodePage> {
   final emailAddressController = TextEditingController();
   final validationCodeController = TextEditingController();
 
@@ -34,16 +33,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               title: Text("Fill out all fields!"));
         },
       );
-    } else if (!EmailValidator.validate(emailAddressController.text)) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const CupertinoAlertDialog(
-              title: Text("Email is not correct!"));
-        },
-      );
     } else {
-      context.go('/login/forgot_password/validation_page');
+      context.go(
+          '/home'); // TODO: check if the validation code is actually correct
     }
   }
 
@@ -73,8 +65,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CustomTextFormField(
-                    hintText: 'Email address',
-                    controller: emailAddressController,
+                    hintText: 'Enter validation code',
+                    controller: validationCodeController,
                   ),
                 ],
               ),
