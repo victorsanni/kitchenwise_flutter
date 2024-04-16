@@ -3,7 +3,8 @@ class Recipe {
     required this.title,
     this.description = '',
     this.ingredients = const [],
-    this.imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Rice_grains_%28IRRI%29.jpg',
+    this.imageUrl =
+        'https://upload.wikimedia.org/wikipedia/commons/4/4b/Beans_in_a_supermarket.jpg',
   });
 
   final String title;

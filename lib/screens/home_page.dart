@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
-import 'package:kitchenwise/data/recipe_data.dart';
-import 'package:kitchenwise/widgets/recipe_card.dart';
-import 'package:kitchenwise/widgets/text_form_field.dart';
+import 'package:kitchenwise/widgets/recipe_widgets/recipe_grid.dart';
 
 enum RecipeHeader { suggestedRecipes, myRecipes }
 
@@ -27,17 +25,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.symmetric(
-            horizontal: AppConstants.sidePadding,
-            vertical: AppConstants.topPadding,
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Row(
+        child: Column(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppConstants.sidePadding),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(
@@ -85,52 +81,18 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: AppConstants.headerPadding),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CustomTextFormField(
-                            hintText: 'Type Something...',
-                            autocorrect: true,
-                            controller: searchController,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: AppConstants.sidePadding,
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            // TODO: Filter grid items by searchController text
-                          },
-                          icon: const Icon(
-                            Icons.search,
-                            size: AppConstants.appIconSize,
-                            weight: AppConstants.buttonBorderThickness,
-                          ),
-                        ),
-                      ],
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: AppConstants.headerPadding),
+                      child: RecipeGrid(searchController: searchController),
                     ),
-                    Expanded(
-                        child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: AppConstants.headerPadding),
-                      child: GridView.count(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: AppConstants.sidePadding,
-                        crossAxisSpacing: AppConstants.sidePadding,
-                        children: recipeData
-                            .map((item) => RecipeCard(
-                                  title: item.title,
-                                  imageUrl: item.imageUrl
-                                ))
-                            .toList(),
-                      ),
-                    )),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
-import 'package:kitchenwise/widgets/inventory_modal.dart';
+import 'package:kitchenwise/widgets/inventory_widgets/inventory_modal.dart';
 
 class InventoryCard extends StatelessWidget {
   const InventoryCard({

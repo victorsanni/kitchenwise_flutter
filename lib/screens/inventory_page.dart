@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
 import 'package:kitchenwise/data/inventory_data.dart';
-import 'package:kitchenwise/widgets/inventory_modal.dart';
-import 'package:kitchenwise/widgets/inventory_card.dart';
+import 'package:kitchenwise/widgets/inventory_widgets/inventory_modal.dart';
+import 'package:kitchenwise/widgets/inventory_widgets/inventory_card.dart';
 
 class InventoryPage extends StatelessWidget {
   const InventoryPage({super.key});
@@ -45,14 +45,15 @@ class InventoryPage extends StatelessWidget {
                 height: AppConstants.headerPadding,
               ),
               Expanded(
-                child: ListView(
-                    shrinkWrap: true,
-                    children: inventoryData
-                        .map((item) => InventoryCard(
-                            title: item.name,
-                            subtitle:
-                                '${item.quantity.toString()} ${item.unit}'))
-                        .toList()),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => InventoryCard(
+                    title: inventoryData[index].name,
+                    subtitle:
+                        '${inventoryData[index].quantity.toString()} ${inventoryData[index].unit}',
+                  ),
+                  itemCount: inventoryData.length,
+                ),
               ),
             ],
           ),
@@ -63,7 +64,9 @@ class InventoryPage extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) => const InventoryAddItemModal(title: 'Add New Item',),
+            builder: (context) => const InventoryAddItemModal(
+              title: 'Add New Item',
+            ),
             constraints: BoxConstraints(
                 maxHeight:
                     MediaQuery.of(context).orientation == Orientation.portrait
