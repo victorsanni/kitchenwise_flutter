@@ -13,19 +13,16 @@ class ValidationCodePage extends StatefulWidget {
 }
 
 class _ValidationCodePageState extends State<ValidationCodePage> {
-  final emailAddressController = TextEditingController();
   final validationCodeController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
-    emailAddressController.dispose();
     validationCodeController.dispose();
   }
 
   void handleLoginButtonPressed() {
-    if (emailAddressController.text.isEmpty &&
-        validationCodeController.text.isEmpty) {
+    if (validationCodeController.text.isEmpty) {
       showDialog(
         context: context,
         builder: (context) {

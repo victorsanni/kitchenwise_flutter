@@ -85,11 +85,11 @@ final router = GoRouter(
           routes: [
             GoRoute(
                 path: 'forgot_password',
-                builder: (context, state) => const ValidationCodePage(),
+                builder: (context, state) => const ForgotPasswordPage(),
                 routes: [
                   GoRoute(
                     path: 'validation_page',
-                    builder: (context, state) => const ForgotPasswordPage(),
+                    builder: (context, state) => const ValidationCodePage(),
                   ),
                 ]),
           ],

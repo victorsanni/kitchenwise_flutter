@@ -15,18 +15,15 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final emailAddressController = TextEditingController();
-  final validationCodeController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
     emailAddressController.dispose();
-    validationCodeController.dispose();
   }
 
   void handleLoginButtonPressed() {
-    if (emailAddressController.text.isEmpty &&
-        validationCodeController.text.isEmpty) {
+    if (emailAddressController.text.isEmpty) {
       showDialog(
         context: context,
         builder: (context) {
@@ -66,17 +63,20 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     ?.copyWith(fontWeight: FontWeight.w900),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(
-                  horizontal: AppConstants.textFormSidePadding),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CustomTextFormField(
-                    hintText: 'Email address',
-                    controller: emailAddressController,
-                  ),
-                ],
+            AutofillGroup(
+              child: Container(
+                margin: const EdgeInsets.symmetric(
+                    horizontal: AppConstants.textFormSidePadding),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CustomTextFormField(
+                      hintText: 'Email address',
+                      controller: emailAddressController,
+                      autofillHints: const [AutofillHints.email],
+                    ),
+                  ],
+                ),
               ),
             ),
             Column(

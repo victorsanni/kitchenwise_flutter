@@ -8,16 +8,19 @@ class CustomTextFormField extends StatelessWidget {
     this.isPassword = false,
     this.controller,
     this.autocorrect = false,
+    this.autofillHints = const [],
   });
   final String? hintText;
   final bool isPassword;
   final TextEditingController? controller;
   final bool autocorrect;
+  final Iterable<String> autofillHints;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      autofillHints: autofillHints,
       textAlignVertical: TextAlignVertical.center,
       autocorrect: autocorrect,
       obscureText: isPassword,

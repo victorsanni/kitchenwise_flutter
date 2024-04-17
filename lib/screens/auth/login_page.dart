@@ -58,39 +58,45 @@ class _LoginPageState extends State<LoginPage> {
                     ?.copyWith(fontWeight: FontWeight.w900),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(
-                  horizontal: AppConstants.textFormSidePadding),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CustomTextFormField(
-                    hintText: 'Email address',
-                    controller: emailAddressController,
-                  ),
-                  const SizedBox(
-                    height: AppConstants.bottomPadding,
-                  ),
-                  CustomTextFormField(
-                    hintText: 'Password',
-                    isPassword: true,
-                    controller: passwordController,
-                  ),
-                  const SizedBox(
-                    height: AppConstants.bottomPadding,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      context.go('/login/forgot_password');
-                    },
-                    child: Text(
-                      'Forgot Password? Click here to reset',
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
-                          decoration: TextDecoration.underline),
+            AutofillGroup(
+              child: Container(
+                margin: const EdgeInsets.symmetric(
+                    horizontal: AppConstants.textFormSidePadding),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CustomTextFormField(
+                        hintText: 'Email address',
+                        controller: emailAddressController,
+                        autofillHints: const [AutofillHints.email]),
+                    const SizedBox(
+                      height: AppConstants.bottomPadding,
                     ),
-                  ),
-                ],
+                    CustomTextFormField(
+                      hintText: 'Password',
+                      isPassword: true,
+                      controller: passwordController,
+                      autofillHints: const [AutofillHints.password],
+                    ),
+                    const SizedBox(
+                      height: AppConstants.bottomPadding,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.go('/login/forgot_password');
+                      },
+                      child: Text(
+                        'Forgot Password? Click here to reset',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                decoration: TextDecoration.underline),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Column(
