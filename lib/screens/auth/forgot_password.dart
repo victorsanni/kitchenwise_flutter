@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:kitchenwise/constants.dart';
 import 'package:kitchenwise/widgets/auth_widgets/email_text_form_field.dart';
 import 'package:kitchenwise/widgets/auth_widgets/login_button.dart';
-import 'package:kitchenwise/widgets/custom_text_form_field.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
