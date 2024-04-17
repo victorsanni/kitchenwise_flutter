@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kitchenwise/constants.dart';
-import 'package:kitchenwise/widgets/login_button.dart';
-import 'package:kitchenwise/widgets/text_form_field.dart';
+import 'package:kitchenwise/widgets/auth_widgets/email_text_form_field.dart';
+import 'package:kitchenwise/widgets/auth_widgets/login_button.dart';
+import 'package:kitchenwise/widgets/auth_widgets/password_text_form_field.dart';
+import 'package:kitchenwise/widgets/custom_text_form_field.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
@@ -84,18 +86,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  CustomTextFormField(
-                    hintText: 'Email address',
-                    controller: emailAddressController,
-                  ),
+                  EmailTextFormField(emailAddressController: emailAddressController),
                   const SizedBox(
                     height: AppConstants.bottomPadding,
                   ),
-                  CustomTextFormField(
-                    hintText: 'Password',
-                    isPassword: true,
-                    controller: passwordController,
-                  ),
+                  PasswordTextFormField(passwordController: passwordController),
                   const SizedBox(
                     height: AppConstants.bottomPadding,
                   ),

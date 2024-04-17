@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
-import 'package:kitchenwise/widgets/login_button.dart';
-import 'package:kitchenwise/widgets/text_form_field.dart';
+import 'package:kitchenwise/widgets/auth_widgets/login_button.dart';
+import 'package:kitchenwise/widgets/custom_text_form_field.dart';
 
 class InventoryAddItemModal extends StatelessWidget {
   const InventoryAddItemModal(

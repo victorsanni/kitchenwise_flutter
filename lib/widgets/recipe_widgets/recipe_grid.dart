@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
 import 'package:kitchenwise/data/recipe_data.dart';
 import 'package:kitchenwise/widgets/recipe_widgets/recipe_card.dart';
-import 'package:kitchenwise/widgets/text_form_field.dart';
+import 'package:kitchenwise/widgets/custom_text_form_field.dart';
 
 class RecipeGrid extends StatelessWidget {
   const RecipeGrid({

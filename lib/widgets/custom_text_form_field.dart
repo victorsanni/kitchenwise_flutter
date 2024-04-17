@@ -9,17 +9,20 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.autocorrect = false,
     this.autofillHints = const [],
+    this.keyboardType = TextInputType.text,
   });
   final String? hintText;
   final bool isPassword;
   final TextEditingController? controller;
   final bool autocorrect;
   final Iterable<String> autofillHints;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      keyboardType: keyboardType,
       autofillHints: autofillHints,
       textAlignVertical: TextAlignVertical.center,
       autocorrect: autocorrect,

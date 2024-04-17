@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kitchenwise/constants.dart';
-import 'package:kitchenwise/widgets/login_button.dart';
+import 'package:kitchenwise/widgets/auth_widgets/login_button.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});

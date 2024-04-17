@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kitchenwise/constants.dart';
-import 'package:kitchenwise/widgets/login_button.dart';
-import 'package:kitchenwise/widgets/text_form_field.dart';
+import 'package:kitchenwise/widgets/auth_widgets/login_button.dart';
+import 'package:kitchenwise/widgets/custom_text_form_field.dart';
 
 class ValidationCodePage extends StatefulWidget {
   const ValidationCodePage({super.key});
@@ -64,6 +64,7 @@ class _ValidationCodePageState extends State<ValidationCodePage> {
                   CustomTextFormField(
                     hintText: 'Enter validation code',
                     controller: validationCodeController,
+                    keyboardType: TextInputType.number,
                   ),
                 ],
               ),
