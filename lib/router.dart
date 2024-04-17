@@ -3,11 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:kitchenwise/screens/auth/create_account_page.dart';
 import 'package:kitchenwise/screens/auth/forgot_password.dart';
 import 'package:kitchenwise/screens/auth/validation_code_page.dart';
-import 'package:kitchenwise/screens/home_page.dart';
-import 'package:kitchenwise/screens/inventory_page.dart';
+import 'package:kitchenwise/screens/recipes/home_page.dart';
+import 'package:kitchenwise/screens/inventory/inventory_page.dart';
 import 'package:kitchenwise/screens/auth/landing_page.dart';
 import 'package:kitchenwise/screens/auth/login_page.dart';
-import 'package:kitchenwise/screens/profile_page.dart';
+import 'package:kitchenwise/screens/profile/profile_page.dart';
 import 'package:kitchenwise/widgets/nav_bar.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
