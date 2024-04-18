@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
+import 'package:kitchenwise/data/recipe_data.dart';
+import 'package:kitchenwise/models/recipe_model.dart';
 import 'package:kitchenwise/widgets/recipe_widgets/recipe_grid.dart';
 
 enum RecipeHeader { suggestedRecipes, myRecipes }
@@ -14,6 +16,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   RecipeHeader selectedHeader = RecipeHeader.suggestedRecipes;
   TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    for (Recipe recipe in recipeData) {
+      recipe.setImageUrl();
+    }
+  }
 
   @override
   void dispose() {

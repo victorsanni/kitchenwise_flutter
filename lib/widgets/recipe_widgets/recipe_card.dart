@@ -7,12 +7,12 @@ class RecipeCard extends StatelessWidget {
   const RecipeCard({
     super.key,
     required this.title,
-    this.imageUrl = '',
+    required this.imageUrl,
     this.imageHeight = 120,
   });
 
   final String title;
-  final String imageUrl;
+  final String? imageUrl;
   final double imageHeight;
 
   @override
@@ -33,14 +33,17 @@ class RecipeCard extends StatelessWidget {
                     color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(AppConstants.imageRadius),
-                  child: FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage,
-                    image: imageUrl,
-                    fit: BoxFit.fill,
-                  ),
-                ),
+                imageUrl == null
+                    ? const Text('')
+                    : ClipRRect(
+                        borderRadius:
+                            BorderRadius.circular(AppConstants.imageRadius),
+                        child: FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: imageUrl!,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
               ],
             ),
           ),

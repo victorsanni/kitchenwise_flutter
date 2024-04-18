@@ -57,11 +57,19 @@ class RecipeGrid extends StatelessWidget {
                       : AppConstants.portraitAspectRatio,
             ),
             itemCount: recipeData.length,
-            itemBuilder: (context, index) => RecipeCard(
-              title: recipeData[index].title,
-              imageUrl: recipeData[index].imageUrl,
-              imageHeight: AppConstants.imageHeight,
-            ),
+            itemBuilder: (context, index) => FutureBuilder<String?>(
+                future: recipeData[index].imageUrl,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return RecipeCard(
+                      title: recipeData[index].title,
+                      imageUrl: snapshot.data,
+                      imageHeight: AppConstants.imageHeight,
+                    );
+                  } else {
+                    return const Text('');
+                  }
+                }),
           ),
         ),
       ],
