@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../constants.dart';
+import 'package:kitchenwise/constants.dart';
 
 class LoginButton extends StatelessWidget {
   final GestureTapCallback onPressed;
@@ -8,6 +7,7 @@ class LoginButton extends StatelessWidget {
   final bool isOutlineButton;
   final double buttonRadius;
   final EdgeInsetsGeometry padding;
+  final double fontSize;
 
   const LoginButton(
       {super.key,
@@ -15,7 +15,8 @@ class LoginButton extends StatelessWidget {
       required this.centerText,
       this.isOutlineButton = false,
       this.buttonRadius = AppConstants.buttonRadius,
-      this.padding = const EdgeInsets.all(8.0)});
+      this.padding = const EdgeInsets.all(8.0),
+      this.fontSize = AppConstants.fontSize});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,7 @@ class LoginButton extends StatelessWidget {
           child: Text(
             centerText,
             style: TextStyle(
+                fontSize: fontSize,
                 color: isOutlineButton
                     ? Theme.of(context).buttonTheme.colorScheme!.inversePrimary
                     : Colors.white),

@@ -19,7 +19,7 @@ class RecipeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.go('/');
+        context.go('/home/recipe_page');
       },
       child: Column(
         children: [

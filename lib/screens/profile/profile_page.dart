@@ -29,6 +29,13 @@ class _ProfilePageState extends State<ProfilePage> {
                       TextButton(
                         onPressed: () {},
                         child: Text(
+                          'Shopping List',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
                           'About',
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),

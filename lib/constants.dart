@@ -23,4 +23,5 @@ class AppConstants {
   static const portraitAspectRatio = 0.82;
   static const imageHeight = 150.0;
   static const gridVerticalPadding = 10.0;
+  static const fontSize = 18.0;
 }
