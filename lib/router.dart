@@ -37,7 +37,7 @@ final router = GoRouter(
                   child: InventoryPage(),
                 );
               },
-              routes: [],
+              routes: const [],
             ),
           ],
         ),
@@ -70,7 +70,7 @@ final router = GoRouter(
                   child: ProfilePage(),
                 );
               },
-              routes: [],
+              routes: const [],
             ),
           ],
         ),
