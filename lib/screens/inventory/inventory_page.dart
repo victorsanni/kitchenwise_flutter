@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
 import 'package:kitchenwise/data/inventory_data.dart';
+import 'package:kitchenwise/models/inventory_model.dart';
 import 'package:kitchenwise/widgets/inventory_widgets/inventory_modal.dart';
 import 'package:kitchenwise/widgets/inventory_widgets/inventory_card.dart';
 
-class InventoryPage extends StatelessWidget {
+class InventoryPage extends StatefulWidget {
   const InventoryPage({super.key});
+
+  @override
+  State<InventoryPage> createState() => _InventoryPageState();
+}
+
+class _InventoryPageState extends State<InventoryPage> {
+  @override
+  void initState() {
+    super.initState();
+    for (InventoryItem item in inventoryData) {
+      item.setImageUrl();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +61,20 @@ class InventoryPage extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemBuilder: (context, index) => InventoryCard(
-                    title: inventoryData[index].name,
-                    subtitle:
-                        '${inventoryData[index].quantity.toString()} ${inventoryData[index].unit}',
-                  ),
+                  itemBuilder: (context, index) => FutureBuilder(
+                      future: inventoryData[index].imageUrl,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return InventoryCard(
+                            title: inventoryData[index].name,
+                            subtitle:
+                                '${inventoryData[index].quantity.toString()} ${inventoryData[index].unit}',
+                            imageUrl: snapshot.data,
+                          );
+                        } else {
+                          return const Text('');
+                        }
+                      }),
                   itemCount: inventoryData.length,
                 ),
               ),

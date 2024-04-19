@@ -8,7 +8,7 @@ class RecipeCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.imageUrl,
-    this.imageHeight = 120,
+    this.imageHeight = 120.0,
   });
 
   final String title;
@@ -38,10 +38,12 @@ class RecipeCard extends StatelessWidget {
                     : ClipRRect(
                         borderRadius:
                             BorderRadius.circular(AppConstants.imageRadius),
-                        child: FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: imageUrl!,
-                          fit: BoxFit.fill,
+                        child: SizedBox.expand(
+                          child: FadeInImage.memoryNetwork(
+                            placeholder: kTransparentImage,
+                            image: imageUrl!,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
               ],

@@ -1,9 +1,15 @@
+import 'package:kitchenwise/api.dart';
+
 class InventoryItem {
   InventoryItem({required this.name, this.quantity = 1, this.unit = ''});
 
   final String name;
   final int quantity;
   final String unit;
+    late Future<String?> imageUrl;
 
-  // TODO: Get image from internet given name
+
+  void setImageUrl() {
+    imageUrl = fetchImageUrl(name);
+  }
 }
