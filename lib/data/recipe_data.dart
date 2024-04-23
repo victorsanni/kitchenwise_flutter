@@ -1,6 +1,7 @@
+import 'package:kitchenwise/models/recipe_list.dart';
 import 'package:kitchenwise/models/recipe_model.dart';
 
-List<Recipe> recipeData = [
+RecipeList recipeData = RecipeList.fromList([
   Recipe(
     title: 'Classic Tomato Spaghetti',
     description: 'A simple and classic spaghetti recipe using fresh tomatoes.',
@@ -91,4 +92,4 @@ List<Recipe> recipeData = [
         'Classic apple pie with a flaky crust and sweet apple filling.',
     ingredients: ['Apples', 'Sugar', 'Cinnamon', 'Pie crust'],
   ),
-];
+]);

@@ -58,11 +58,12 @@ class RecipeGrid extends StatelessWidget {
             ),
             itemCount: recipeData.length,
             itemBuilder: (context, index) => FutureBuilder<String?>(
-                future: recipeData[index].imageUrl,
+                future: recipeData.recipeList[index].imageUrl,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return RecipeCard(
-                      title: recipeData[index].title,
+                      id: recipeData.recipeList[index].id,
+                      title: recipeData.recipeList[index].title,
                       imageUrl: snapshot.data,
                       imageHeight: AppConstants.imageHeight,
                     );

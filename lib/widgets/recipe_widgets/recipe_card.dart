@@ -8,18 +8,21 @@ class RecipeCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.imageUrl,
+    required this.id,
     this.imageHeight = 120.0,
   });
 
   final String title;
   final String? imageUrl;
   final double imageHeight;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.go('/home/recipe_page');
+        context.goNamed('recipe_page',
+            queryParameters: {'recipeId': id.toString(), 'imageUrl': imageUrl});
       },
       child: Column(
         children: [

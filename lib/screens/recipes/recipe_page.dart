@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
+import 'package:kitchenwise/data/recipe_data.dart';
+import 'package:kitchenwise/models/recipe_model.dart';
 import 'package:kitchenwise/widgets/auth_widgets/login_button.dart';
 import 'package:kitchenwise/widgets/recipe_widgets/recipe_cookware.dart';
 import 'package:kitchenwise/widgets/recipe_widgets/recipe_ingredients.dart';
 import 'package:kitchenwise/widgets/recipe_widgets/recipe_procedure.dart';
 
 class RecipePage extends StatelessWidget {
-  const RecipePage({super.key});
+  final String? recipeId;
+  final String? imageUrl;
+  const RecipePage({super.key, this.recipeId, this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,8 @@ class RecipePage extends StatelessWidget {
       RecipeProcedure(),
     ];
 
+    Recipe recipe = recipeData.getById(int.parse(recipeId!));
+
     return SafeArea(
       child: Column(
         children: [
@@ -29,7 +35,7 @@ class RecipePage extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 5,
             child: SizedBox.expand(
               child: Image.network(
-                'https://upload.wikimedia.org/wikipedia/commons/4/4b/Beans_in_a_supermarket.jpg',
+                imageUrl!,
                 fit: BoxFit.fill,
               ),
             ),
@@ -38,7 +44,7 @@ class RecipePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
                 vertical: AppConstants.bottomPadding),
             child: Text(
-              'Fried Rice',
+              recipe.title,
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ),

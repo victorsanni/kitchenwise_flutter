@@ -53,8 +53,12 @@ final router = GoRouter(
               },
               routes: [
                 GoRoute(
+                  name: 'recipe_page',
                   path: 'recipe_page',
-                  builder: (context, state) => const RecipePage(),
+                  builder: (context, state) => RecipePage(
+                    recipeId: state.uri.queryParameters['recipeId'],
+                    imageUrl: state.uri.queryParameters['imageUrl'],
+                  ),
                 ),
               ],
             ),
