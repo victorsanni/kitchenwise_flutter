@@ -32,7 +32,7 @@ class RecipePage extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 5,
+            height: MediaQuery.of(context).size.height / 4,
             child: SizedBox.expand(
               child: Image.network(
                 imageUrl!,

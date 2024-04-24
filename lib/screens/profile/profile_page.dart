@@ -18,10 +18,25 @@ class _ProfilePageState extends State<ProfilePage> {
                   horizontal: AppConstants.sidePadding,
                   vertical: AppConstants.topPadding),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Welcome Victor!', // TODO: Replace with username in login
-                    style: Theme.of(context).textTheme.labelLarge,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CircleAvatar(
+                          radius: 70.0,
+                          child: Text(
+                            'VS',
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
+                        ),
+                        Text(
+                          'Welcome Victor!', // TODO: Replace with username in login
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
+                      ],
+                    ),
                   ),
                   Expanded(
                       child: ListView(
@@ -33,6 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
+                      const Divider(),
                       TextButton(
                         onPressed: () {},
                         child: Text(
@@ -40,6 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
+                      const Divider(),
                       TextButton(
                         onPressed: () {},
                         child: Text(
@@ -47,6 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
+                      const Divider(),
                       TextButton(
                         onPressed: () {},
                         child: Text(
