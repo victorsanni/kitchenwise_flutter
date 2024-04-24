@@ -63,12 +63,10 @@ class _InventoryEditItemModalState extends State<InventoryEditItemModal> {
             flex: 2,
             child: ListView(
               children: [
-                Expanded(
-                  child: CustomTextFormField(
-                    hintText: 'food name',
-                    autocorrect: true,
-                    controller: nameController,
-                  ),
+                CustomTextFormField(
+                  hintText: 'food name',
+                  autocorrect: true,
+                  controller: nameController,
                 ),
                 const SizedBox(
                   height: AppConstants.modalHorizPadding,
@@ -102,7 +100,7 @@ class _InventoryEditItemModalState extends State<InventoryEditItemModal> {
                   child: LoginButton(
                 onPressed: () {
                   setState(() {
-                    // TODO: Use state management here
+                    // TODO: Use state management here and notify listeners
                     inventoryData.setById(
                         widget.id,
                         nameController!.text,
