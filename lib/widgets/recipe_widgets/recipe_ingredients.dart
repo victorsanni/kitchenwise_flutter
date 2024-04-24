@@ -17,9 +17,9 @@ class RecipeIngredients extends StatelessWidget {
               itemCount: inventoryData.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(inventoryData[index].name),
+                  title: Text(inventoryData.inventoryList[index].name),
                   trailing: Text(
-                      '${inventoryData[index].quantity} ${inventoryData[index].unit}'),
+                      '${inventoryData.inventoryList[index].quantity} ${inventoryData.inventoryList[index].unit}'),
                 );
               }),
         ),
@@ -32,9 +32,9 @@ class RecipeIngredients extends StatelessWidget {
               itemCount: inventoryData.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(inventoryData[index].name),
+                  title: Text(inventoryData.inventoryList[index].name),
                   trailing: Text(
-                      '${inventoryData[index].quantity} ${inventoryData[index].unit}'),
+                      '${inventoryData.inventoryList[index].quantity} ${inventoryData.inventoryList[index].unit}'),
                 );
               }),
         ),

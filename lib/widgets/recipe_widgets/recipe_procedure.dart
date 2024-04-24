@@ -13,7 +13,7 @@ class RecipeProcedure extends StatelessWidget {
               itemCount: inventoryData.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Center(child: Text(inventoryData[index].name)),
+                  title: Center(child: Text(inventoryData.inventoryList[index].name)),
                 );
               }),
         ),

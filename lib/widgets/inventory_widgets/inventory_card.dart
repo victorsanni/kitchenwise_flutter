@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
+import 'package:kitchenwise/data/inventory_data.dart';
 import 'package:kitchenwise/widgets/inventory_widgets/inventory_edit_modal.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class InventoryCard extends StatelessWidget {
   const InventoryCard({
     super.key,
-    required this.title,
-    required this.subtitle,
     required this.imageUrl,
     required this.id,
   });
 
   final int id;
-  final String title;
-  final String subtitle;
   final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
+    final String title = inventoryData.getById(id).name;
+    final int quantity = inventoryData.getById(id).quantity;
+    final String unit = inventoryData.getById(id).unit;
+    
     return Card(
       child: ListTile(
         tileColor: Theme.of(context).colorScheme.tertiary,
@@ -54,11 +55,12 @@ class InventoryCard extends StatelessWidget {
           ),
         ),
         title: Text(title),
-        subtitle: Text(subtitle),
+        subtitle: Text(
+          '${quantity.toString()} $unit',
+        ),
         trailing: IconButton(
           onPressed: () {
             showModalBottomSheet(
-              // TODO: Populate modal with pre-existing item values
               context: context,
               builder: (context) => InventoryEditItemModal(
                 id: id,

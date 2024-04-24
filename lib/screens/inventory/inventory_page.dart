@@ -16,7 +16,7 @@ class _InventoryPageState extends State<InventoryPage> {
   @override
   void initState() {
     super.initState();
-    for (InventoryItem item in inventoryData) {
+    for (InventoryItem item in inventoryData.inventoryList) {
       item.setImageUrl();
     }
   }
@@ -62,14 +62,11 @@ class _InventoryPageState extends State<InventoryPage> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   itemBuilder: (context, index) => FutureBuilder(
-                      future: inventoryData[index].imageUrl,
+                      future: inventoryData.inventoryList[index].imageUrl,
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           return InventoryCard(
-                            id: index,
-                            title: inventoryData[index].name,
-                            subtitle:
-                                '${inventoryData[index].quantity.toString()} ${inventoryData[index].unit}',
+                            id: inventoryData.inventoryList[index].id,
                             imageUrl: snapshot.data,
                           );
                         } else {
