@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
-import 'package:kitchenwise/data/inventory_data.dart';
+import 'package:kitchenwise/models/inventory_state.dart';
 import 'package:kitchenwise/widgets/inventory_widgets/inventory_edit_modal.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -16,9 +16,9 @@ class InventoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String title = inventoryData.getById(id).name;
-    final int quantity = inventoryData.getById(id).quantity;
-    final String unit = inventoryData.getById(id).unit;
+    final String title = InventoryState.of(context).data.getById(id).name;
+    final int quantity = InventoryState.of(context).data.getById(id).quantity;
+    final String unit = InventoryState.of(context).data.getById(id).unit;
     
     return Card(
       child: ListTile(

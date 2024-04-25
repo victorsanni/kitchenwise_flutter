@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kitchenwise/data/inventory_data.dart';
+import 'package:kitchenwise/models/inventory_state.dart';
 import 'package:kitchenwise/screens/auth/create_account_page.dart';
 import 'package:kitchenwise/screens/auth/forgot_password.dart';
 import 'package:kitchenwise/screens/auth/validation_code_page.dart';
@@ -24,7 +26,9 @@ final router = GoRouter(
   routes: [
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
-        return KitchenwiseNavBar(navigationShell: navigationShell);
+        return InventoryState(
+            data: inventoryDataList,
+            child: KitchenwiseNavBar(navigationShell: navigationShell));
       },
       branches: [
         StatefulShellBranch(

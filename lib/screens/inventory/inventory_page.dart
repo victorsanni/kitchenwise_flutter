@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
-import 'package:kitchenwise/data/inventory_data.dart';
+import 'package:kitchenwise/models/inventory_list.dart';
 import 'package:kitchenwise/models/inventory_model.dart';
+
+import 'package:kitchenwise/models/inventory_state.dart';
 import 'package:kitchenwise/widgets/inventory_widgets/inventory_add_modal.dart';
 import 'package:kitchenwise/widgets/inventory_widgets/inventory_card.dart';
 
-class InventoryPage extends StatefulWidget {
+class InventoryPage extends StatelessWidget {
   const InventoryPage({super.key});
-
-  @override
-  State<InventoryPage> createState() => _InventoryPageState();
-}
-
-class _InventoryPageState extends State<InventoryPage> {
-  @override
-  void initState() {
-    super.initState();
-    for (InventoryItem item in inventoryData.inventoryList) {
-      item.setImageUrl();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,22 +48,7 @@ class _InventoryPageState extends State<InventoryPage> {
                 height: AppConstants.headerPadding,
               ),
               Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => FutureBuilder(
-                      future: inventoryData.inventoryList[index].imageUrl,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return InventoryCard(
-                            id: inventoryData.inventoryList[index].id,
-                            imageUrl: snapshot.data,
-                          );
-                        } else {
-                          return const Text('');
-                        }
-                      }),
-                  itemCount: inventoryData.length,
-                ),
+                child: InventoryListview(),
               ),
             ],
           ),
@@ -101,6 +75,37 @@ class _InventoryPageState extends State<InventoryPage> {
           color: Colors.white,
         ),
       ),
+    );
+  }
+}
+
+class InventoryListview extends StatelessWidget {
+  const InventoryListview({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemBuilder: (context, index) => FutureBuilder(
+          future: InventoryState.of(context).data.inventoryList[index].imageUrl,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              InventoryList invList = InventoryState.of(context).data;
+              return ListenableBuilder(
+                  listenable: invList,
+                  builder: (context, child) {
+                    return InventoryCard(
+                      id: invList.inventoryList[index].id,
+                      imageUrl: snapshot.data,
+                    );
+                  });
+            } else {
+              return const Text('');
+            }
+          }),
+      itemCount: InventoryState.of(context).data.length,
     );
   }
 }

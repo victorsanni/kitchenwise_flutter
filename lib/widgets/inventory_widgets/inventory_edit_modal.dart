@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:kitchenwise/constants.dart';
 
-import 'package:kitchenwise/data/inventory_data.dart';
+import 'package:kitchenwise/models/inventory_state.dart';
 import 'package:kitchenwise/widgets/auth_widgets/login_button.dart';
 import 'package:kitchenwise/widgets/custom_text_form_field.dart';
 
@@ -24,15 +24,20 @@ class _InventoryEditItemModalState extends State<InventoryEditItemModal> {
   TextEditingController? nameController;
   TextEditingController? quantityController;
   TextEditingController? unitController;
+
   @override
-  void initState() {
-    super.initState();
-    nameController =
-        TextEditingController(text: inventoryData.getById(widget.id).name);
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    nameController = TextEditingController(
+        text: InventoryState.of(context).data.getById(widget.id).name);
     quantityController = TextEditingController(
-        text: inventoryData.getById(widget.id).quantity.toString());
-    unitController =
-        TextEditingController(text: inventoryData.getById(widget.id).unit);
+        text: InventoryState.of(context)
+            .data
+            .getById(widget.id)
+            .quantity
+            .toString());
+    unitController = TextEditingController(
+        text: InventoryState.of(context).data.getById(widget.id).unit);
   }
 
   @override
@@ -99,14 +104,12 @@ class _InventoryEditItemModalState extends State<InventoryEditItemModal> {
               Expanded(
                   child: LoginButton(
                 onPressed: () {
-                  setState(() {
                     // TODO: Use state management here and notify listeners
-                    inventoryData.setById(
+                    InventoryState.of(context).data.setById(
                         widget.id,
                         nameController!.text,
                         int.parse(quantityController!.text),
                         unitController!.text);
-                  });
                   Navigator.of(context).pop();
                 },
                 centerText: 'confirm',
@@ -119,7 +122,7 @@ class _InventoryEditItemModalState extends State<InventoryEditItemModal> {
               Expanded(
                 child: LoginButton(
                   onPressed: () {
-                    inventoryData.remove(widget.id);
+                    InventoryState.of(context).data.remove(widget.id);
                     Navigator.of(context).pop();
                   },
                   centerText: 'delete item',

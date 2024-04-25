@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
-import 'package:kitchenwise/data/inventory_data.dart';
 import 'package:kitchenwise/models/inventory_model.dart';
+import 'package:kitchenwise/models/inventory_state.dart';
 import 'package:kitchenwise/widgets/auth_widgets/login_button.dart';
 import 'package:kitchenwise/widgets/custom_text_form_field.dart';
 
@@ -83,7 +83,7 @@ class _InventoryAddItemModalState extends State<InventoryAddItemModal> {
             onPressed: () {
               setState(() {
                 // TODO: Use state management here and notify listeners
-                inventoryData.add(
+                InventoryState.of(context).data.add(
                   InventoryItem(
                       name: nameController!.text,
                       quantity: int.parse(quantityController!.text),

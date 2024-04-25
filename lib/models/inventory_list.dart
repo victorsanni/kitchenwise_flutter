@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:kitchenwise/models/inventory_model.dart';
 
-class InventoryList {
+class InventoryList extends ChangeNotifier {
   InventoryList({required this.inventoryList, required this.rsum});
 
   List<InventoryItem> inventoryList;
@@ -9,8 +10,10 @@ class InventoryList {
   factory InventoryList.fromList(List<InventoryItem> dataList) {
     int id = 0;
     List<InventoryItem> newList = [];
+
     for (InventoryItem inventoryitem in dataList) {
       inventoryitem.id = id;
+      inventoryitem.setImageUrl();
       newList.add(inventoryitem);
       id += 1;
     }
@@ -23,10 +26,12 @@ class InventoryList {
     inventoryitem.id = rsum;
     inventoryList.add(inventoryitem);
     rsum += 1;
+    notifyListeners();
   }
 
   void remove(int id) {
     inventoryList.removeWhere((item) => item.id == id);
+    notifyListeners();
   }
 
   InventoryItem getById(int id) {
@@ -39,5 +44,6 @@ class InventoryList {
     inventoryList[index].name = name;
     inventoryList[index].quantity = quantity;
     inventoryList[index].unit = unit;
+    notifyListeners();
   }
 }

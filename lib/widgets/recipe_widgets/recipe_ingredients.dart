@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kitchenwise/data/inventory_data.dart';
+import 'package:kitchenwise/models/inventory_state.dart';
 
 class RecipeIngredients extends StatelessWidget {
   const RecipeIngredients({super.key});
@@ -14,12 +14,12 @@ class RecipeIngredients extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
-              itemCount: inventoryData.length,
+              itemCount: InventoryState.of(context).data.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(inventoryData.inventoryList[index].name),
+                  title: Text(InventoryState.of(context).data.inventoryList[index].name),
                   trailing: Text(
-                      '${inventoryData.inventoryList[index].quantity} ${inventoryData.inventoryList[index].unit}'),
+                      '${InventoryState.of(context).data.inventoryList[index].quantity} ${InventoryState.of(context).data.inventoryList[index].unit}'),
                 );
               }),
         ),
@@ -29,12 +29,12 @@ class RecipeIngredients extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
-              itemCount: inventoryData.length,
+              itemCount: InventoryState.of(context).data.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(inventoryData.inventoryList[index].name),
+                  title: Text(InventoryState.of(context).data.inventoryList[index].name),
                   trailing: Text(
-                      '${inventoryData.inventoryList[index].quantity} ${inventoryData.inventoryList[index].unit}'),
+                      '${InventoryState.of(context).data.inventoryList[index].quantity} ${InventoryState.of(context).data.inventoryList[index].unit}'),
                 );
               }),
         ),

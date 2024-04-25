@@ -1,7 +1,7 @@
 import 'package:kitchenwise/models/inventory_list.dart';
 import 'package:kitchenwise/models/inventory_model.dart';
 
-InventoryList inventoryData = InventoryList.fromList([
+InventoryList inventoryDataList = InventoryList.fromList([
   InventoryItem(name: 'Apples', quantity: 5, unit: 'pcs'),
   InventoryItem(name: 'Bananas', quantity: 3, unit: 'pcs'),
   InventoryItem(name: 'Milk', quantity: 1, unit: 'L'),
@@ -13,3 +13,4 @@ InventoryList inventoryData = InventoryList.fromList([
   InventoryItem(name: 'Pasta', quantity: 500, unit: 'g'),
   InventoryItem(name: 'Canned Tomatoes', quantity: 4, unit: 'cans'),
 ]);
+

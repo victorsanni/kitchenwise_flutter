@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kitchenwise/data/inventory_data.dart';
+import 'package:kitchenwise/models/inventory_state.dart';
 
 class RecipeProcedure extends StatelessWidget {
   const RecipeProcedure({super.key});
@@ -10,10 +10,10 @@ class RecipeProcedure extends StatelessWidget {
       children: [
         Flexible(
           child: ListView.builder(
-              itemCount: inventoryData.length,
+              itemCount: InventoryState.of(context).data.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Center(child: Text(inventoryData.inventoryList[index].name)),
+                  title: Center(child: Text(InventoryState.of(context).data.inventoryList[index].name)),
                 );
               }),
         ),
