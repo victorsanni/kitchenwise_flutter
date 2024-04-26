@@ -20,7 +20,7 @@ final _shellNavigatorHomeKey = GlobalKey<NavigatorState>();
 final _shellNavigatorInventoryKey = GlobalKey<NavigatorState>();
 final _shellNavigatorProfileKey = GlobalKey<NavigatorState>();
 
-bool shouldLogin = false;
+bool shouldLogin = true;
 
 final router = GoRouter(
   initialLocation: shouldLogin ? '/' : '/home',

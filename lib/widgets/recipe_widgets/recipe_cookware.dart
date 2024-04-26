@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kitchenwise/models/inventory_state.dart';
 
 class RecipeCookware extends StatelessWidget {
   const RecipeCookware({super.key});
