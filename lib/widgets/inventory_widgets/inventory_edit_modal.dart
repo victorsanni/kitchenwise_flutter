@@ -104,12 +104,11 @@ class _InventoryEditItemModalState extends State<InventoryEditItemModal> {
               Expanded(
                   child: LoginButton(
                 onPressed: () {
-                    // TODO: Use state management here and notify listeners
-                    InventoryState.of(context).data.setById(
-                        widget.id,
-                        nameController!.text,
-                        int.parse(quantityController!.text),
-                        unitController!.text);
+                  InventoryState.of(context).data.setById(
+                      widget.id,
+                      nameController!.text,
+                      int.parse(quantityController!.text),
+                      unitController!.text);
                   Navigator.of(context).pop();
                 },
                 centerText: 'confirm',

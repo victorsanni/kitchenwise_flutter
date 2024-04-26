@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenwise/constants.dart';
 import 'package:kitchenwise/models/inventory_list.dart';
-import 'package:kitchenwise/models/inventory_model.dart';
 
 import 'package:kitchenwise/models/inventory_state.dart';
 import 'package:kitchenwise/widgets/inventory_widgets/inventory_add_modal.dart';
@@ -47,7 +46,7 @@ class InventoryPage extends StatelessWidget {
               const SizedBox(
                 height: AppConstants.headerPadding,
               ),
-              Expanded(
+              const Expanded(
                 child: InventoryListview(),
               ),
             ],
@@ -86,26 +85,25 @@ class InventoryListview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemBuilder: (context, index) => FutureBuilder(
-          future: InventoryState.of(context).data.inventoryList[index].imageUrl,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              InventoryList invList = InventoryState.of(context).data;
-              return ListenableBuilder(
-                  listenable: invList,
-                  builder: (context, child) {
-                    return InventoryCard(
-                      id: invList.inventoryList[index].id,
-                      imageUrl: snapshot.data,
-                    );
-                  });
-            } else {
-              return const Text('');
-            }
-          }),
-      itemCount: InventoryState.of(context).data.length,
+    InventoryList invList = InventoryState.of(context).data;
+    return ListenableBuilder(
+      listenable: invList,
+      builder: (context, child) => ListView.builder(
+        shrinkWrap: true,
+        itemBuilder: (context, index) => FutureBuilder(
+            future: invList.inventoryList[index].imageUrl,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return InventoryCard(
+                  id: invList.inventoryList[index].id,
+                  imageUrl: snapshot.data,
+                );
+              } else {
+                return const Text('');
+              }
+            }),
+        itemCount: invList.length,
+      ),
     );
   }
 }

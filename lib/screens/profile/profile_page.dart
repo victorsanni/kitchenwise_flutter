@@ -44,7 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          'Shopping List',
+                          'About',
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
@@ -52,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          'About',
+                          'Shopping List',
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),

@@ -24,6 +24,7 @@ class InventoryList extends ChangeNotifier {
 
   void add(InventoryItem inventoryitem) {
     inventoryitem.id = rsum;
+    inventoryitem.setImageUrl();
     inventoryList.add(inventoryitem);
     rsum += 1;
     notifyListeners();

@@ -6,13 +6,15 @@ class Recipe {
     this.description = '',
     this.ingredients = const [],
     this.id = 0,
+    this.isMine = false,
   });
 
   int id;
-  final String title;
-  final String description;
-  final List<String> ingredients;
+  String title;
+  String description;
+  List<String> ingredients;
   late Future<String?> imageUrl;
+  bool isMine;
 
   void setImageUrl() {
     imageUrl = fetchImageUrl(title);

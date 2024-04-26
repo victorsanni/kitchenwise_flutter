@@ -15,9 +15,17 @@ class InventoryAddItemModal extends StatefulWidget {
 }
 
 class _InventoryAddItemModalState extends State<InventoryAddItemModal> {
-  TextEditingController? nameController = TextEditingController();
-  TextEditingController? quantityController = TextEditingController();
-  TextEditingController? unitController = TextEditingController();
+  TextEditingController? nameController;
+  TextEditingController? quantityController;
+  TextEditingController? unitController;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    nameController = TextEditingController();
+    quantityController = TextEditingController();
+    unitController = TextEditingController();
+  }
 
   @override
   void dispose() {
@@ -81,15 +89,13 @@ class _InventoryAddItemModalState extends State<InventoryAddItemModal> {
           Expanded(
               child: LoginButton(
             onPressed: () {
-              setState(() {
-                // TODO: Use state management here and notify listeners
-                InventoryState.of(context).data.add(
-                  InventoryItem(
+              InventoryState.of(context).data.add(
+                    InventoryItem(
                       name: nameController!.text,
                       quantity: int.parse(quantityController!.text),
-                      unit: unitController!.text),
-                );
-              });
+                      unit: unitController!.text,
+                    ),
+                  );
               Navigator.of(context).pop();
             },
             centerText: 'confirm',

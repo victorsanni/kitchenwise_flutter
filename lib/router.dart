@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kitchenwise/data/inventory_data.dart';
+import 'package:kitchenwise/data/recipe_data.dart';
 import 'package:kitchenwise/models/inventory_state.dart';
+import 'package:kitchenwise/models/recipe_state.dart';
 import 'package:kitchenwise/screens/auth/create_account_page.dart';
 import 'package:kitchenwise/screens/auth/forgot_password.dart';
 import 'package:kitchenwise/screens/auth/validation_code_page.dart';
@@ -26,9 +28,12 @@ final router = GoRouter(
   routes: [
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
-        return InventoryState(
-            data: inventoryDataList,
-            child: KitchenwiseNavBar(navigationShell: navigationShell));
+        return RecipeState(
+          data: recipeData,
+          child: InventoryState(
+              data: inventoryDataList,
+              child: KitchenwiseNavBar(navigationShell: navigationShell)),
+        );
       },
       branches: [
         StatefulShellBranch(
@@ -60,7 +65,7 @@ final router = GoRouter(
                   name: 'recipe_page',
                   path: 'recipe_page',
                   builder: (context, state) => RecipePage(
-                    recipeId: state.uri.queryParameters['recipeId'],
+                    id: state.uri.queryParameters['recipeId'],
                     imageUrl: state.uri.queryParameters['imageUrl'],
                   ),
                 ),
